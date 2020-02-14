@@ -7,6 +7,8 @@ public class LifeSpan : MonoBehaviour
 {
     [SerializeField]
     Names namechecker;
+    [SerializeField]
+    stats playerstats;
 
     public GameObject spawn;
     [SerializeField]
@@ -23,6 +25,8 @@ public class LifeSpan : MonoBehaviour
     public Text agetxt;
     public Text yeartxt;
 
+
+    bool yearpass;
     [SerializeField]
     int startage, maxage, age;
     [SerializeField]
@@ -31,7 +35,7 @@ public class LifeSpan : MonoBehaviour
     void Start()
     {
         namechecker = namechecker.GetComponent<Names>();
-
+        playerstats = playerstats.GetComponent<stats>();
 
 
         generation = 1;
@@ -45,7 +49,7 @@ public class LifeSpan : MonoBehaviour
         timeinyear = ((neededsecconds / (maxage - startage)));
         age = startage;
         agetxt.text = "Age: " + age.ToString();
-        yeartxt.text = "year: " + year.ToString();
+        yeartxt.text = "Year: " + year.ToString();
     }
 
     // Update is called once per frame
@@ -69,13 +73,15 @@ public class LifeSpan : MonoBehaviour
             currentttime = 0;
             age++;
             year++;
+            yearpass = true;
             agetxt.text = "Age: " + age.ToString();
-            yeartxt.text = "year: " + year.ToString();
+            yeartxt.text = "Year: " + year.ToString();
         }
 
-        if (age > 68)
+        if (age > 78 && yearpass)
         {
-            //speed 1/3
+            playerstats.Setmaxhaelth(Mathf.RoundToInt(playerstats.Getmaxhealth() * 0.8f));
+            yearpass = false;
         }
 
 
