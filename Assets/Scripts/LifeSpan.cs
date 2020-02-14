@@ -15,10 +15,13 @@ public class LifeSpan : MonoBehaviour
     float secconds,neededsecconds;
     [SerializeField]
     int generation;
+    [SerializeField]
+    int year;
 
     public Text gen;
     public Text name;
     public Text agetxt;
+    public Text yeartxt;
 
     [SerializeField]
     int startage, maxage, age;
@@ -38,9 +41,11 @@ public class LifeSpan : MonoBehaviour
 
         startage = Random.Range(18, 21);
         maxage = Random.Range(80, 88);
+        year = Random.Range(600, 900);
         timeinyear = ((neededsecconds / (maxage - startage)));
         age = startage;
         agetxt.text = "Age: " + age.ToString();
+        yeartxt.text = "year: " + year.ToString();
     }
 
     // Update is called once per frame
@@ -63,7 +68,9 @@ public class LifeSpan : MonoBehaviour
         {
             currentttime = 0;
             age++;
+            year++;
             agetxt.text = "Age: " + age.ToString();
+            yeartxt.text = "year: " + year.ToString();
         }
 
         if (age > 68)
