@@ -11,7 +11,7 @@ public class Movement_player : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
-    Vector2 move;
+    Vector3 move;
 
  
     // Update is called once per frame
@@ -19,17 +19,18 @@ public class Movement_player : MonoBehaviour
     {
         move.x = Input.GetAxisRaw("Horizontal");
         move.y = Input.GetAxisRaw("Vertical");
+        move.z = 0;
 
         animator.SetFloat("Horizontal", move.x);
         animator.SetFloat("Vertical", move.y);
         animator.SetFloat("Speed", move.sqrMagnitude);
 
-
+        move = new Vector3(move.x, move.y,0);
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + move * speed * Time.fixedDeltaTime);
+        transform.position = transform.position + move * Time.unscaledDeltaTime; 
     }
 
 }
