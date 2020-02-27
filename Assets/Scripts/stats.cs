@@ -26,26 +26,29 @@ public class stats : MonoBehaviour
     }
 
 
-  public void Setmaxhaelth(int hp)
+    public void Setmaxhaelth(int hp)
     {
 
         maxhelth = hp;
 
     }
-  public int Getmaxhealth()
+    public int Getmaxhealth()
     {
 
         return maxhelth;
     }
-  public void Setcurrenthaelth(int hp)
+    public void Setcurrenthaelth(int hp)
     {
 
         currenthelth = hp;
 
     }
-  public int Getcurrenthealth()
+    public int Getcurrenthealth()
     {
 
         return currenthelth;
     }
+
 }
+
+

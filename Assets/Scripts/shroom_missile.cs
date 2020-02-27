@@ -7,8 +7,15 @@ public class shroom_missile : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
+    GameObject go;
    
-   public Movement_player player;
+   
+    Movement_player player;
+   
+    stats playerstats;
+
+    [SerializeField]
+    float timedestroy = 3, ctime;
 
 
     [SerializeField]
@@ -20,7 +27,9 @@ public class shroom_missile : MonoBehaviour
     void Start()
     {
 
-        player = player.GetComponent<Movement_player>();
+        go = GameObject.FindGameObjectWithTag("Player");
+        player = go.GetComponent<Movement_player>();
+        playerstats = go.GetComponent<stats>();
 
     }
 
@@ -34,8 +43,23 @@ public class shroom_missile : MonoBehaviour
 
         transform.position = new Vector3(temp.x, temp.y, -0.5f);
 
+        ctime += Time.unscaledDeltaTime;
 
+        if (ctime >= timedestroy)
+        {
+            Destroy(gameObject);
+        }
 
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+
+            playerstats.Setcurrenthaelth(playerstats.Getcurrenthealth() - 10);
+
+            Destroy(gameObject);
+        }
     }
 }
