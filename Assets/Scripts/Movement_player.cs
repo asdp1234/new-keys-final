@@ -8,13 +8,26 @@ public class Movement_player : MonoBehaviour
     SpriteRenderer sr;
 
     [SerializeField]
+    Sprite up, down, left, right;
+
+
+    [SerializeField]
     float speed = 5f;
 
     public Rigidbody2D rb;
     public Animator animator;
 
-    Vector2 move;
 
+    private bool isMoveRight;
+    private bool isMoveLeft;
+    private bool isMoveUp;
+    private bool isMoveDown;
+    private bool isidle;
+
+
+
+    Vector2 move;
+    float idelX, idelY;
 
 
     // Update is called once per frame
@@ -31,6 +44,31 @@ public class Movement_player : MonoBehaviour
         animator.SetFloat("Horizontal", move.x);
         animator.SetFloat("Vertical", move.y);
         animator.SetFloat("Speed", move.sqrMagnitude);
+        animator.SetFloat("IdelX", idelX);
+        animator.SetFloat("IdelY", idelY);
+
+        if (move.x > 0 && move.y == 0)
+        {
+            idelX = 1.0f;
+        }
+        if (move.x < 0 && move.y == 0)
+        {
+            idelX = -1.0f;
+        }
+        if (move.y > 0 && move.x == 0)
+        {
+            idelY = 1.0f;
+        }
+        if (move.y < 0 && move.x == 0 )
+        {
+            idelY = -1.0f;
+
+        }
+
+
+        
+
+
 
         if (move.x > 0)
         {
@@ -48,14 +86,7 @@ public class Movement_player : MonoBehaviour
         {
             move.y = -1;
         }
-        if (move.x == 0 && move.y == 0)
-        {
-            sr.flipX = true;
-        }
-        else
-        {
-            sr.flipX = false;
-        }
+      
     }
 
     private void FixedUpdate()

@@ -8,7 +8,7 @@ public class Shroom : MonoBehaviour
     GameObject go;
 
     [SerializeField]
-    float[] ctime, ntime;
+    float ctime, ntime;
 
     [SerializeField]
     Vector3 pos;
@@ -25,15 +25,14 @@ public class Shroom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < ctime.Length; i++)
-        {
-            ctime[i] += Time.unscaledDeltaTime;
-        }
+      
+            ctime += Time.unscaledDeltaTime;
+       
 
-        if (ctime[0] >= ntime[0] && ammo > 0)
+        if (ctime >= ntime)
         {
             Instantiate(go,gameObject.transform);
-            ctime[0] = 0.0f;
+            ctime = 0.0f;
         }
         
     }
