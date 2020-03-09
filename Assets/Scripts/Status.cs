@@ -11,6 +11,8 @@ public class Status : MonoBehaviour
     [SerializeField]
     bool poison;
     float ctimea, ntimea = 15, ctimeb, ntimeb = .3f;
+    [SerializeField]
+    bool resistant, immune, weak;
 
     [SerializeField]
     Image img;
@@ -23,8 +25,8 @@ public class Status : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
+
+
         if (this.gameObject.tag == "Player")
         {
             stats stat;
@@ -57,7 +59,47 @@ public class Status : MonoBehaviour
         }
         if (this.gameObject.tag == "Enemy")
         {
+            if (poison)
+            {
+                npchaelth npc;
 
+                ctimeb += Time.deltaTime;
+                npc = this.GetComponent<npchaelth>();
+
+                if (ctimeb >= ntimeb)
+                {
+                    if (immune)
+                    {
+                        
+                    }
+                    else if (resistant)
+                    {
+                        ntimeb = .6f;
+                        npc.Setcurrenthaelth(npc.Getcurrenthealth() - 1);
+                    }
+                    else if (weak)
+                    {
+                        ntimeb = .15f;
+                        npc.Setcurrenthaelth(npc.Getcurrenthealth() - 1);
+                    }
+                    else
+                    {
+                        ntimeb = .3f;
+                        npc.Setcurrenthaelth(npc.Getcurrenthealth() - 1);
+
+                    }
+
+                    ctimeb = 0;
+                }
+
+                ctimea += Time.deltaTime;
+
+                if (ctimea >= ntimea)
+                {
+                    poison = false;
+                    ctimea = 0;
+                }
+            }
         }
     }
 }
