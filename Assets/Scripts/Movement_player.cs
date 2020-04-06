@@ -41,51 +41,7 @@ public class Movement_player : MonoBehaviour
         move.x = Input.GetAxisRaw("Horizontal");
         move.y = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", move.x);
-        animator.SetFloat("Vertical", move.y);
-        animator.SetFloat("Speed", move.sqrMagnitude);
-        animator.SetFloat("IdelX", idelX);
-        animator.SetFloat("IdelY", idelY);
-
-        if (move.x > 0 && move.y == 0)
-        {
-            idelX = 1.0f;
-        }
-        if (move.x < 0 && move.y == 0)
-        {
-            idelX = -1.0f;
-        }
-        if (move.y > 0 && move.x == 0)
-        {
-            idelY = 1.0f;
-        }
-        if (move.y < 0 && move.x == 0 )
-        {
-            idelY = -1.0f;
-
-        }
-
-
-        
-
-
-
-        if (move.x > 0)
-        {
-            move.x = 1;
-        }
-        if (move.y > 0)
-        {
-            move.y = 1;
-        }
-        if (move.x < 0)
-        {
-            move.x = -1;
-        }
-        if (move.y < 0)
-        {
-            move.y = -1;
-        }
+       
       
     }
 
