@@ -102,4 +102,11 @@ public class Status : MonoBehaviour
             }
         }
     }
+
+    public void Poisonon()
+    {
+        poison = true;
+    }
+
+
 }

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shroom_missile : MonoBehaviour
+public class shroom_missile : ObjectCompendium
 {
     [SerializeField]
     Rigidbody2D rb;
 
     GameObject go;
-   
-   
+
     Movement_player player;
+    
    
     stats playerstats;
 
@@ -26,9 +26,9 @@ public class shroom_missile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         go = GameObject.FindGameObjectWithTag("Player");
         player = go.GetComponent<Movement_player>();
+
         playerstats = go.GetComponent<stats>();
 
     }

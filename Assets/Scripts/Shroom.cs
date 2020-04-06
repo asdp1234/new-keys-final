@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shroom : MonoBehaviour
+public class Shroom : ObjectCompendium
 {
     [SerializeField]
     GameObject go;
+    GameObject pgo;
+
+
+    Movement_player player;
 
     [SerializeField]
     float ctime, ntime;
@@ -16,23 +20,35 @@ public class Shroom : MonoBehaviour
     [SerializeField]
     int ammo;
 
+
+    [SerializeField]
+    float distance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pgo = GameObject.FindGameObjectWithTag("Player");
+        player = pgo.GetComponent<Movement_player>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
       
-            ctime += Time.unscaledDeltaTime;
+
+       distance = Vector3.Distance(player.transform.position, transform.position);
+
+        ctime += Time.unscaledDeltaTime;
        
 
         if (ctime >= ntime)
         {
             Instantiate(go,gameObject.transform);
             ctime = 0.0f;
+        }
+        if (distance < .2f)
+        {
+            player.GetComponent<Status>().Poisonon();
         }
         
     }

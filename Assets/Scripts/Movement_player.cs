@@ -34,15 +34,21 @@ public class Movement_player : MonoBehaviour
     private void Start()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
-        sr.flipX = true;
+        
     }
     void Update()
     {
         move.x = Input.GetAxisRaw("Horizontal");
         move.y = Input.GetAxisRaw("Vertical");
 
-       
-      
+        if (Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            sr.flipX = true;
+        }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            sr.flipX = false;
+        }
     }
 
     private void FixedUpdate()
